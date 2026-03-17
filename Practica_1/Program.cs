@@ -1,5 +1,6 @@
 using Practica_1.Data;
 using Microsoft.EntityFrameworkCore;
+using Practica_1.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("defaulDbConnection"))
 );
+
+builder.Services.AddScoped<SpecialtyRepository>();
+builder.Services.AddScoped<StaffCategoryRepository>();
+builder.Services.AddScoped<StaffRepository>();
 
 var app = builder.Build();
 
